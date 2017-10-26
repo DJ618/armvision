@@ -45,8 +45,6 @@ Note: The recognition method is not very robust; please see SIFT / SURF for a go
 
 <br/>
 <br/>
--------------------------------------------------------------------------------
-_U FACTORY_
--------------------------------------------------------------------------------
+_U FACTORY_<br/>
 Git repo for an API wrapper to the uarm.
 https://github.com/uArm-Developer/pyuf/
