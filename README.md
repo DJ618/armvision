@@ -27,7 +27,7 @@ python arm.py <flags><br/>
         -cards<n>
             Tells the AI how many cards to expect for now, this feature may
             be consumed with improved functionality later.
-            NOTE: There exists no space between the "s" in cards, and the num.
+            NOTE: There exists no space between the "s" in cards, and the number of cards.
 <br/>
 <br/>
 -------------------------------------------------------------------------------
