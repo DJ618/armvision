@@ -5,6 +5,7 @@ from pyuf.uf.wrapper.uarm_api import UarmAPI
 from pyuf.uf.utils.log import *
 import cv2
 
+num_training_cards = 3
 useCam = True
 showCards = False
 num_cards = 4
@@ -51,10 +52,11 @@ def initApp():
 
 #card vision functions
 def detectCards():
-    global num_cards, showCards
+    global num_cards, showCards, num_training_cards
     print("Training AI recognition..")
     #get_training(training_labels_filename, training_image_filename, num_training_cards)
-    training = get_training('./vision/train.tsv', './vision/train.png', 56)
+    # training = get_training('./vision/train.tsv', './vision/train.png', 56)
+    training = get_training('./vision/train.tsv', './vision/train.png', num_training_cards)
     print("AI trained\n")
     if(training != None):
         #read/take image
@@ -76,9 +78,9 @@ def detectCards():
         #transpose and flip if need be
         width = im.shape[0]
         height = im.shape[1]
-        if width < height:
-          im = cv2.transpose(im)
-          im = cv2.flip(im,1)
+        # if width < height:
+        #   im = cv2.transpose(im)
+        #   im = cv2.flip(im,1)
 
         print("Collecting data")
         try:
@@ -86,6 +88,7 @@ def detectCards():
             print("Probable cards:")
             print(cards)
             if(showCards == True):
+                print("Showing rendered results")
                 try:
                     # Debug: uncomment to see registered images
                     for i,c in enumerate(getCards(im,num_cards)):
@@ -119,11 +122,8 @@ def menu():
                 else:
                     print("Arm control disabled\n")
             elif(choice == 2):
-                if(useCam):
-                    print("AI Mode enabled\n")
-                    detectCards();
-                else:
-                    print("Camera Disabled")
+                print("AI Mode enabled\n")
+                detectCards();
             elif(choice == 3):
                 print("Shutting down..\n")
                 break
