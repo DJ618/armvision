@@ -3,8 +3,8 @@ _Setup:_
 python ./pyuf/setup.py install <br/>
 <br/>
 Required software: <br/>
-Python3, pip, {Possibly python2.7}
-NOTE: Be sure to have your python path environment variables set!
+Python3, pip, {Possibly python2.7}<br/>
+NOTE: Be sure to have your python path environment variables set!<br/>
 <br/>
 <br/>
 -------------------------------------------------------------------------------
@@ -18,23 +18,23 @@ pip install opencv-python
 _Use of arm.py_
 -------------------------------------------------------------------------------
 python arm.py <flags><br/>
-  flags:
-        -noarm
-            Will disable the robotic arm aspect of the application.
-        -nocam
-            Will disable the camera aspect of the application and use internal
+  flags:<br/>
+        _-noarm_<br/>
+            Will disable the robotic arm aspect of the application.<br/>
+        _-nocam_<br/>
+            Will disable the camera aspect of the application and use internal<br/>
               images instead.
-        -cards<n>
+        _-cards<n>_<br/>
             Tells the AI how many cards to expect for now, this feature may
-            be consumed with improved functionality later.
-            NOTE: There exists no space between the "s" in cards, and the number of cards.
+            be consumed with improved functionality later.<br/>
+            NOTE: There exists no space between the "s" in cards, and the number of cards.<br/>
 <br/>
 <br/>
 -------------------------------------------------------------------------------
 _Card Recognition using OpenCV_
 -------------------------------------------------------------------------------
-Code from the blog post
-https://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python
+Code from the blog post<br/>
+https://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python<br/>
 Usage:<br/>
   /card_img.py filename num_cards training_image_filename training_labels_filename num_training_cards<br/>
 Example:<br/>
