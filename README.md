@@ -23,7 +23,9 @@ python arm.py <flags><br/>
             Will disable the robotic arm aspect of the application.<br/>
         _-nocam_<br/>
             Will disable the camera aspect of the application and use internal<br/>
-              images instead.
+              images instead.<br/>
+        _-showcards_<br/>
+            Will show the rendered card images during execution time.<br/>
         _-cards<n>_<br/>
             Tells the AI how many cards to expect for now, this feature may
             be consumed with improved functionality later.<br/>
