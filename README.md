@@ -33,7 +33,7 @@ python arm.py <flags><br/>
 Card Recognition using OpenCV
 -------------------------------------------------------------------------------
 Code from the blog post
-http://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python
+arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python
 Usage:<br/>
   ./card_img.py filename num_cards training_image_filename training_labels_filename num_training_cards<br/>
 Example:<br/>
@@ -46,4 +46,4 @@ Note: The recognition method is not very robust; please see SIFT / SURF for a go
 UFACTORY
 -------------------------------------------------------------------------------
 Git repo for an API wrapper to the uarm.
-https://github.com/uArm-Developer/pyuf/
+github.com/uArm-Developer/pyuf/
