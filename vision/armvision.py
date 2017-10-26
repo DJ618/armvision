@@ -40,6 +40,7 @@ def imgdiff(img1,img2):
     return np.sum(diff)
 
 def find_closest_card(training,img):
+    print("find_closest_card")
     features = preprocess(img)
     return sorted(training.values(), key=lambda x:imgdiff(x[1],features))[0][0]
 
@@ -47,6 +48,7 @@ def find_closest_card(training,img):
 # Card Extraction
 ###############################################################################
 def getCards(im, numcards):
+  print("getCards")
   gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
   blur = cv2.GaussianBlur(gray,(1,1),1000)
   flag, thresh = cv2.threshold(blur, 120, 255, cv2.THRESH_BINARY)
