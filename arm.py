@@ -15,7 +15,7 @@ y = 150
 z = 100
 
 def initApp():
-    global useArm, num_cards, showCards
+    global useArm, num_cards, showCards, useCam
     if(len(sys.argv)>1):
         for item in sys.argv[1:]:
             flag = str(item)
