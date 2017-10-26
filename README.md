@@ -30,8 +30,19 @@ python arm.py <flags><br/>
             Tells the AI how many cards to expect for now, this feature may
             be consumed with improved functionality later.<br/>
             NOTE: There exists no space between the "s" in cards, and the number of cards.<br/>
+Examples<br/>
+python.exe .\arm.py -noarm -showcards -cards2<br/>
 <br/>
 <br/>
+-------------------------------------------------------------------------------
+_AI training for card recognition_
+There is a global variable named num_training_cards at the top of arm.py.<br/>
+As of the creation of this document, the armvision has only learned and mastered
+3 cards with acceptable results. If you wish to add more to the knowledge base,
+it requires updating a newly created "train.png" file, and an updated train.tsv
+file.<br/>
+<br/>
+-------------------------------------------------------------------------------
 -------------------------------------------------------------------------------
 _Card Recognition using OpenCV_
 -------------------------------------------------------------------------------
