@@ -15,7 +15,7 @@ y = 150
 z = 100
 
 def initApp():
-    global useArm, num_cards
+    global useArm, num_cards, showCards
     if(len(sys.argv)>1):
         for item in sys.argv[1:]:
             flag = str(item)
@@ -119,8 +119,11 @@ def menu():
                 else:
                     print("Arm control disabled\n")
             elif(choice == 2):
-                print("AI Mode enabled\n")
-                detectCards();
+                if(useCam):
+                    print("AI Mode enabled\n")
+                    detectCards();
+                else:
+                    print("Camera Disabled")
             elif(choice == 3):
                 print("Shutting down..\n")
                 break
