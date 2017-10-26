@@ -1,19 +1,20 @@
-#Setup:<br/>
+#Setup:
 -------------------------------------------------------------------------------
-python ./pyuf/setup.py install<br/>
+python ./pyuf/setup.py install <br/>
 <br/>
-Required software:<br/>
-Python3, pip<br/>
+Required software: <br/>
+Python3, pip
+<br/>
 <br/>
 -------------------------------------------------------------------------------
-#Required packages:<br/>
+#Required packages:
 -------------------------------------------------------------------------------
 pip install uarm<br/>
-pip install opencv-python<br/>
+pip install opencv-python
 <br/>
 <br/>
 -------------------------------------------------------------------------------
-#Use of arm.py<br/>
+#Use of arm.py
 -------------------------------------------------------------------------------
 python arm.py <flags><br/>
   flags:
@@ -29,7 +30,7 @@ python arm.py <flags><br/>
 <br/>
 <br/>
 -------------------------------------------------------------------------------
-#Card Recognition using OpenCV<br/>
+#Card Recognition using OpenCV
 -------------------------------------------------------------------------------
 Code from the blog post
 http://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python
@@ -42,7 +43,7 @@ Note: The recognition method is not very robust; please see SIFT / SURF for a go
 <br/>
 <br/>
 -------------------------------------------------------------------------------
-#UFACTORY<br/>
+#UFACTORY
 -------------------------------------------------------------------------------
 Git repo for an API wrapper to the uarm.
 https://github.com/uArm-Developer/pyuf/
