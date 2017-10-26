@@ -80,8 +80,6 @@ def detectCards():
           im = cv2.transpose(im)
           im = cv2.flip(im,1)
 
-
-
         print("Collecting data")
         try:
             cards = [find_closest_card(training,c) for c in getCards(im,num_cards)]
@@ -113,7 +111,7 @@ def menu():
     choice = -1
     while(choice != 3):
         try:
-            choice = int((input("----------\n1) Manual Control\n2) Detect Cards\n3)quit\n----------\n")))
+            choice = int((input("----------\n1) Manual Control\n2) AI Mode\n3) Quit\n----------\n")))
             if(choice == 1):
                 if(useArm):
                     print("Transfer to manual controls...\n")
