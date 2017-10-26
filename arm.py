@@ -6,6 +6,7 @@ from pyuf.uf.utils.log import *
 import cv2
 
 useCam = True
+showCards = False
 num_cards = 4
 useArm = True
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
@@ -27,10 +28,12 @@ def initApp():
             elif(flag== "-nocam"):
                 useCam = False;
                 print("Disabling webcam, using internal images")
+            elif(flag== "-showcards"):
+                showCards = True
+                print("Showing card recognition")
             else:
                 print("Uknown flag: %s" % flag)
                 sys.exit()
-
 
     if(useArm):
         #logger_init(logging.VERBOSE)
@@ -48,7 +51,7 @@ def initApp():
 
 #card vision functions
 def detectCards():
-    global num_cards
+    global num_cards, showCards
     print("Training AI recognition..")
     #get_training(training_labels_filename, training_image_filename, num_training_cards)
     training = get_training('./vision/train.tsv', './vision/train.png', 56)
@@ -77,19 +80,24 @@ def detectCards():
           im = cv2.transpose(im)
           im = cv2.flip(im,1)
 
-        # Debug: uncomment to see registered images
-        # for i,c in enumerate(getCards(im,num_cards)):
-        #   card = find_closest_card(training,c,)
-        #   cv2.imshow(str(card),c)
-        # cv2.waitKey(0)
+
 
         print("Collecting data")
         try:
             cards = [find_closest_card(training,c) for c in getCards(im,num_cards)]
             print("Probable cards:")
             print(cards)
+            if(showCards == True):
+                try:
+                    # Debug: uncomment to see registered images
+                    for i,c in enumerate(getCards(im,num_cards)):
+                      card = find_closest_card(training,c,)
+                      cv2.imshow(str(card),c)
+                    cv2.waitKey(0)
+                except:
+                    print("Unable to retreive card images")
         except:
-            print("Unable to detect cards!")
+            print("Unable to detect any cards")
 
 
 #function for turning the pump on/off asynchronously
