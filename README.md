@@ -3,7 +3,8 @@ Setup:
 python ./pyuf/setup.py install <br/>
 <br/>
 Required software: <br/>
-Python3, pip
+Python3, pip, {Possibly python2.7}
+NOTE: Be sure to have your python path environment variables set!
 <br/>
 <br/>
 -------------------------------------------------------------------------------
