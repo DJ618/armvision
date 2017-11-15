@@ -59,47 +59,49 @@ def detectCards():
     training = get_training('./vision/train.tsv', './vision/train.png', num_training_cards)
     print("AI trained\n")
     if(training != None):
+        cards = []
+        while(len(cards) == 0):
         #read/take image
-        print("Getting image")
-        if(useCam == True):
-            cap = cv2.VideoCapture(0)
-            ret, frame = cap.read()
-            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
-            #show capture
-            # cv2.imshow('frame', rgb)
-            if os.path.isfile('./vision/currentcapture.jpg'):
-                os.remove('./vision/currentcapture.jpg')
-            cv2.imwrite('./vision/currentcapture.jpg', frame)
-            cap.release()
-            im = cv2.imread('./vision/currentcapture.jpg')
-        else:
-            im = cv2.imread('./vision/test.jpg')
+            print("Getting image")
+            if(useCam == True):
+                cap = cv2.VideoCapture(0)
+                ret, frame = cap.read()
+                rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+                #show capture
+                # cv2.imshow('frame', rgb)
+                if os.path.isfile('./vision/currentcapture.jpg'):
+                    os.remove('./vision/currentcapture.jpg')
+                cv2.imwrite('./vision/currentcapture.jpg', frame)
+                cap.release()
+                im = cv2.imread('./vision/currentcapture.jpg')
+            else:
+                im = cv2.imread('./vision/test.jpg')
 
-        #transpose and flip if need be
-        width = im.shape[0]
-        height = im.shape[1]
-        # if width < height:
-        #   im = cv2.transpose(im)
-        #   im = cv2.flip(im,1)
+            #transpose and flip if need be
+            width = im.shape[0]
+            height = im.shape[1]
+            # if width < height:
+            #   im = cv2.transpose(im)
+            #   im = cv2.flip(im,1)
 
-        print("Collecting data")
-        try:
-            cards = [find_closest_card(training,c) for c in getCards(im,num_cards)]
-            print("Probable cards:")
-            print(cards)
-            if(showCards == True):
-                print("Showing rendered results")
-                try:
-                    # Debug: uncomment to see registered images
-                    for i,c in enumerate(getCards(im,num_cards)):
-                      card = find_closest_card(training,c,)
-                      cv2.imshow(str(card),c)
-                    cv2.waitKey(0)
-                except:
-                    print("Unable to retreive card images")
-        except:
-            print("Unable to detect any cards")
-
+            print("Collecting data")
+            try:
+                cards = [find_closest_card(training,c) for c in getCards(im,num_cards)]
+                print("Probable cards:")
+                print(cards)
+                if(showCards == True):
+                    print("Showing rendered results")
+                    try:
+                        # Debug: uncomment to see registered images
+                        for i,c in enumerate(getCards(im,num_cards)):
+                          card = find_closest_card(training,c,)
+                          cv2.imshow(str(card),c)
+                        cv2.waitKey(0)
+                    except:
+                        print("Unable to retreive card images")
+            except:
+                print("Unable to detect any cards")
+        return cards
 
 #function for turning the pump on/off asynchronously
 def togglePump(onOff):
@@ -123,7 +125,9 @@ def menu():
                     print("Arm control disabled\n")
             elif(choice == 2):
                 print("AI Mode enabled\n")
-                detectCards();
+                currentCards = detectCards();
+                print("Back in menu thread, printing copy of the cards")
+                print(currentCards)
             elif(choice == 3):
                 print("Shutting down..\n")
                 break
