@@ -1,12 +1,11 @@
-**Setup:**<br/>
 - - - -
+**Setup:**<br/>
 * python ./pyuf/setup.py install <br/>
 * Required software: <br/>
   * Python3, pip, {Possibly python2.7}<br/>
   * NOTE: Be sure to have your python path environment variables set!<br/>
 - - - -
 **Required packages:**<br/>
-- - - -
 * pip install uarm<br/>
 * pip install opencv-python<br/>
 - - - -
@@ -37,7 +36,6 @@ Included are train_full files that have data for an entire 52 card deck, 56 if
 one were to include jokers and front card.<br/>
 - - - -
 **Card Recognition using OpenCV**<br/>
-- - - -
 * Code from the blog post<br/>
   * https://arnab.org/blog/so-i-suck-24-automating-card-games-using-opencv-and-python<br/>
 * Usage:<br/>
@@ -46,6 +44,6 @@ one were to include jokers and front card.<br/>
       * /card_img.py test.JPG 4 train.png train.tsv 56<br/>
       * Note: The recognition method is not very robust; please see SIFT / SURF for a good algorithm.<br/>
 - - - -
-**U FACTORY_(())<br/>
+**U FACTORY**<br/>
 * Git repo for an API wrapper to the uarm.
   * https://github.com/uArm-Developer/pyuf/
