@@ -27,12 +27,12 @@
   * python.exe .\arm.py -noarm -showcards -cards2<br/>
 - - - -
 **AI training for card recognition**<br/>
-There is a global variable named num_training_cards at the top of arm.py.<br/>
-As of the creation of this document, the armvision has only learned and mastered
+  * There is a global variable named num_training_cards at the top of arm.py.
+  * As of the creation of this document, the armvision has only learned and mastered
 3 cards with acceptable results. If you wish to add more to the knowledge base,
 it requires updating a newly created "train.png" file, and an updated train.tsv
-file.<br/>
-Included are train_full files that have data for an entire 52 card deck, 56 if
+file.
+  * Included are train_full files that have data for an entire 52 card deck, 56 if
 one were to include jokers and front card.<br/>
 - - - -
 **Card Recognition using OpenCV**<br/>
