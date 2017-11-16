@@ -222,8 +222,8 @@ def menu():
                     if(currentCards[0][0] < currentCards[0][1]):
                         move0ToStorage()
                         move2ToStorage()
-                        move2FromStorageTo0()
                         move0FromStorageTo2()
+                        move2FromStorageTo0()
 
                 elif(num_cards == 3):
                     print("3 card config")
