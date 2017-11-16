@@ -43,6 +43,7 @@ def initApp():
         print('setup uarm ...')
         #uarm = UarmAPI(dev_port = '/dev/ttyUSB0')
         #uarm = UarmAPI(filters = {'hwid': 'USB VID:PID=0403:6001'})
+        global uarm
         uarm = UarmAPI() # default by filters: {'hwid': 'USB VID:PID=0403:6001'}
         print('sleep 2 sec ...')
         sleep(2)
@@ -60,7 +61,8 @@ def detectCards():
     print("AI trained\n")
     if(training != None):
         cards = []
-        while(len(cards) == 0):
+        trys = 5
+        while(len(cards) == 0 and trys >= 0):
         #read/take image
             print("Getting image")
             if(useCam == True):
@@ -101,6 +103,7 @@ def detectCards():
                         print("Unable to retreive card images")
             except:
                 print("Unable to detect any cards")
+            trys = trys - 1
         return cards
 
 #function for turning the pump on/off asynchronously
@@ -109,7 +112,7 @@ def togglePump(onOff):
 
 #main menu for the user
 def menu():
-    global x,y,z,useArm
+    global x,y,z,useArm,num_cards
     #start at start position
     if(useArm):
         uarm.set_position(x, y, z)
@@ -126,18 +129,41 @@ def menu():
             elif(choice == 2):
                 print("AI Mode enabled\n")
                 currentCards = detectCards();
-                #for now, work with 3 cards
-                #array location <-> physical location from left to right
+                #build configuration space with repsect to how many cards
+                #start location
+                #x = 0
+                #y = 150
+                #z = 100
+                if(num_cards == 1):
+                    print("1 card config")
+                    #location of array[0]
 
-                #p: 2,5,10
-                #c: 2,5,10
+                    #location of storage[0]
 
-                #p:
-                #c:
+                elif(num_cards == 2):
+                    print("2 card config")
+                    #location of array[0]
+                    #location of array[1]
 
-                #p:
-                #c:
-                
+                    #location of storage[0]
+                    #location of storage[1]
+
+                elif(num_cards == 3):
+                    print("3 card config")
+                    #location of array[0]
+                    #location of array[1]
+                    #location of array[2]
+
+                    #location of storage[0]
+                    #location of storage[1]
+                    #location of storage[2]
+
+                #work with 3 cards for now
+                #sort the array, find ending locations
+                currentCards.sort(key=lambda tup: tup[1]);
+                print(currentCards)
+
+
             elif(choice == 3):
                 print("Shutting down..\n")
                 break
