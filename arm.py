@@ -126,8 +126,18 @@ def menu():
             elif(choice == 2):
                 print("AI Mode enabled\n")
                 currentCards = detectCards();
-                print("Back in menu thread, printing copy of the cards")
-                print(currentCards)
+                #for now, work with 3 cards
+                #array location <-> physical location from left to right
+
+                #p: 2,5,10
+                #c: 2,5,10
+
+                #p:
+                #c:
+
+                #p:
+                #c:
+                
             elif(choice == 3):
                 print("Shutting down..\n")
                 break
