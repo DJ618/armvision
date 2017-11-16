@@ -14,6 +14,9 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 x = 0
 y = 150
 z = 100
+resetX = 0
+resetY = 150
+resetZ = 100
 
 def initApp():
     global useArm, num_cards, showCards, useCam
@@ -110,6 +113,81 @@ def detectCards():
 def togglePump(onOff):
     uarm.set_pump(onOff)
 
+def printLocation():
+    print("x,y,z")
+    print("%d, %d, %d" % (x,y,z))
+
+def move0ToStorage():
+    global resetX, resetY, resetZ
+    uarm.set_position(-190, 200, 190)
+    sleep(3)
+    togglePump(True)
+    sleep(1)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+    uarm.set_position(-110, 250, 90)
+    sleep(3)
+    togglePump(False)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+
+def move1ToStorage():
+    global resetX, resetY, resetZ
+    uarm.set_position(-20, 270, 200)
+    sleep(3)
+    togglePump(True)
+    sleep(1)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+    uarm.set_position(-10, 270, 90)
+    sleep(3)
+    togglePump(False)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+
+def move2ToStorage():
+    global resetX, resetY, resetZ
+    uarm.set_position(110, 250, 180)
+    sleep(3)
+    togglePump(True)
+    sleep(1)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+    uarm.set_position(70, 260, 80)
+    sleep(3)
+    togglePump(False)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+
+def move2FromStorageTo0():
+    global resetX, resetY, resetZ
+    uarm.set_position(70, 260, 80)
+    sleep(3)
+    togglePump(True)
+    sleep(1)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+    uarm.set_position(-190, 200, 190)
+    sleep(3)
+    togglePump(False)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+
+def move0FromStorageTo2():
+    global resetX, resetY, resetZ
+    uarm.set_position(-110, 250, 90)
+    sleep(3)
+    togglePump(True)
+    sleep(1)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+    uarm.set_position(110, 250, 180)
+    sleep(3)
+    togglePump(False)
+    uarm.set_position(resetX, resetY, resetZ)
+    sleep(3)
+
+
 #main menu for the user
 def menu():
     global x,y,z,useArm,num_cards
@@ -129,40 +207,36 @@ def menu():
             elif(choice == 2):
                 print("AI Mode enabled\n")
                 currentCards = detectCards();
+                currentCards.sort(key=lambda tup: tup[1]);
+                print(currentCards)
+                print("sorting...")
                 #build configuration space with repsect to how many cards
                 #start location
                 #x = 0
                 #y = 150
                 #z = 100
                 if(num_cards == 1):
-                    print("1 card config")
-                    #location of array[0]
-
-                    #location of storage[0]
-
+                    print("1 card is already sorted")
                 elif(num_cards == 2):
                     print("2 card config")
-                    #location of array[0]
-                    #location of array[1]
-
-                    #location of storage[0]
-                    #location of storage[1]
+                    if(currentCards[0][0] < currentCards[0][1]):
+                        move0ToStorage()
+                        move2ToStorage()
+                        move2FromStorageTo0()
+                        move0FromStorageTo2()
 
                 elif(num_cards == 3):
                     print("3 card config")
-                    #location of array[0]
-                    #location of array[1]
-                    #location of array[2]
+                    #location of array[0] = -190 200 190
+                    #location of array[1] = -20 270 200
+                    #location of array[2] = 110 250 180
 
-                    #location of storage[0]
-                    #location of storage[1]
-                    #location of storage[2]
+                    #location of storage[0] = = -110 250 90
+                    #location of storage[1] = -10 270 90
+                    #location of storage[2] = = 70 260 80
 
                 #work with 3 cards for now
                 #sort the array, find ending locations
-                currentCards.sort(key=lambda tup: tup[1]);
-                print(currentCards)
-
 
             elif(choice == 3):
                 print("Shutting down..\n")
@@ -174,25 +248,20 @@ def menu():
 def manualControl():
     global x,y,z
     while(1):
+        printLocation()
         cmd = str(input(">"))
         if(cmd == 'w'):
             x = x + 10
-            print("x:%d\n"%x)
         elif(cmd == 's'):
             x = x - 10
-            print("x:%d\n"%x)
         elif(cmd == 'a'):
             y = y - 10
-            print("y:%d\n"%y)
         elif(cmd == 'd'):
             y = y + 10
-            print("y:%d\n"%y)
         elif(cmd == 'r'):
             z = z + 10
-            print("z:%d\n"%z)
         elif(cmd == 'f'):
             z = z - 10
-            print("z:%d\n"%z)
         elif(cmd == 'c'):
             threads = []
             t = threading.Thread(target = togglePump(True))
