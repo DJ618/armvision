@@ -125,7 +125,6 @@ def move0ToStorage():
     sleep(1)
     uarm.set_position(resetX, resetY, resetZ)
     sleep(3)
-    # uarm.set_position(-110, 250, 90)
     uarm.set_position(-160, 210, 70)
     sleep(3)
     togglePump(False)
@@ -154,7 +153,7 @@ def move2ToStorage():
     sleep(1)
     uarm.set_position(resetX, resetY, resetZ)
     sleep(3)
-    uarm.set_position(70, 260, 80)
+    uarm.set_position(60, 260, 30)
     sleep(3)
     togglePump(False)
     uarm.set_position(resetX, resetY, resetZ)
@@ -162,7 +161,7 @@ def move2ToStorage():
 
 def move2FromStorageTo0():
     global resetX, resetY, resetZ
-    uarm.set_position(70, 260, 80)
+    uarm.set_position(60, 260, 30)
     sleep(3)
     togglePump(True)
     sleep(1)
@@ -176,7 +175,6 @@ def move2FromStorageTo0():
 
 def move0FromStorageTo2():
     global resetX, resetY, resetZ
-    # uarm.set_position(-110, 250, 90)
     uarm.set_position(-160, 210, 70)
     sleep(3)
     togglePump(True)
